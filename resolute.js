@@ -1,6 +1,5 @@
 (function() {
     var Resolute = function(opt, callback) {
-        var self = this;
         opt = opt || {};
         this.operation = opt.operation;
         this.maxRetry = opt.maxRetry || 3;
@@ -11,7 +10,7 @@
     Resolute.prototype.run = function(operation) {
         var self = this;
 
-        var checkForPromise = function(opt) {
+        var _checkForPromise = function(opt) {
             // Do we have a operation?
             var operation = (typeof opt === "undefined") ? this.operation : opt;
 
@@ -25,7 +24,7 @@
             }
         };
 
-        var fn = checkForPromise.call(self, operation);
+        var _fn = _checkForPromise.call(self, operation);
 
         var _delay = function(ms) {
             return new Promise(function(resolve, reject) {
@@ -34,7 +33,7 @@
         };
 
         var _retry = function(retryCount, maxRetry, fn, delay) {
-            retryCount = retryCount || 0;
+            retryCount = retryCount || 1;
             var retryMechanism = function(err) {
                 if (retryCount >= maxRetry) {
                     throw err;
@@ -49,7 +48,7 @@
             return fn.then(null, retryMechanism);
         };
 
-        return _retry(0, self.maxRetry, fn, self.delay);
+        return _retry(1, self.maxRetry, _fn, self.delay);
     };
 
     // CommonJS module
