@@ -13,12 +13,11 @@
         var _checkForPromise = function(opt) {
             // Do we have a operation?
             var operation = (typeof opt === "undefined") ? this.operation : opt;
-
             switch (operation.constructor.name) {
                 case "Promise":
-                    return this.operation;
+                    return operation;
                 case "Function":
-                    return this.operation();
+                    return operation();
                 default:
                     throw new Error("Operation was not a Function or Promise: " + opt.operation);
             }
