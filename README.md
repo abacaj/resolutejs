@@ -1,4 +1,6 @@
 # resolute.js
+<i>Determined, and unwavering.</i>
+
 [![Github Releases (by Release)](https://img.shields.io/github/downloads/abacaj/resolutejs/v1.1.0/total.svg)](https://github.com/abacaj/resolutejs/releases/download/v1.1.0/resolute.js)
 [![GitHub stars](https://img.shields.io/github/stars/abacaj/resolutejs.svg)](https://github.com/abacaj/resolutejs)
 
