@@ -17,7 +17,7 @@ Minimal requirements: 3kb unminified / 0 dependencies.
 None yet.
 
 ## Usage
-Download resolute.js from [![Github Releases (by Release)](https://img.shields.io/github/downloads/abacaj/resolutejs/v1.0.0/total.svg)](https://github.com/abacaj/resolutejs/releases/download/v1.0.0/resolute.js), create a new instance as shown below
+Download resolute.js from [![Github Releases (by Release)](https://img.shields.io/github/downloads/abacaj/resolutejs/v1.1.0/total.svg)](https://github.com/abacaj/resolutejs/releases/download/v1.1.0/resolute.js), create a new instance as shown below
 and optionally provide a callback that is executed every retry, which gives you the current retry count.
 ### Node.js
 ```javascript
