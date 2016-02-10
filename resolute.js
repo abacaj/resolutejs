@@ -14,12 +14,10 @@
             // Do we have a operation?
             var operation = (typeof opt === "undefined") ? this.operation : opt;
             switch (operation.constructor.name) {
-                case "Promise":
-                    return operation;
                 case "Function":
-                    return operation();
+                    return operation;
                 default:
-                    throw new Error("Operation was not a Function or Promise: " + opt.operation);
+                    throw new Error("Operation was not a Function: " + operation);
             }
         };
 
@@ -44,7 +42,7 @@
                 self.callback(retryCount);
             }
 
-            return fn.then(null, retryMechanism);
+            return fn().then(null, retryMechanism);
         };
 
         return _retry(1, self.maxRetry, _fn, self.delay);

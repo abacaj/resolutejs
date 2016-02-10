@@ -25,11 +25,13 @@ and optionally provide a callback that is executed every retry, which gives you 
 ```javascript
 var Resolute = require("./resolute");
 
-var somePromiseOperation = new Promise(function(resolve, reject) {
-    // Make it fail...
-    if (err) return reject(err);
-    resolve("success");
-});
+var somePromiseOperation = function() {
+    return new Promise(function(resolve, reject) {
+        // Make it fail...
+        if (err) return reject(err);
+        resolve("success");
+    });
+};
 
 var resolute_options = {
     // Reference to your Promise function, note: this Promise will always fail.
@@ -62,11 +64,13 @@ resolute.run(somePromiseOperation).then(null).catch(function(err) {
 <script src="resolute.js"></script>
 ```
 ```javascript
-var somePromiseOperation = new Promise(function(resolve, reject) {
-    // Make it fail...
-    if (err) return reject(err);
-    resolve("success");
-});
+var somePromiseOperation = function() {
+    return new Promise(function(resolve, reject) {
+        // Make it fail...
+        if (err) return reject(err);
+        resolve("success");
+    });
+};
 
 var resolute_options = {
     // Reference to your Promise function, note: this Promise will always fail.
@@ -92,6 +96,5 @@ resolute.run().then(null).catch(function(err) {
 resolute.run(somePromiseOperation).then(null).catch(function(err) {
     console.log("failed after trying: " + resolute.maxRetry + " times, with error: " + err);
 });
-
 
 ```

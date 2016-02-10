@@ -1,10 +1,12 @@
 var Resolute = require("./resolute");
 
-var somePromiseOperation = new Promise(function(resolve, reject) {
-    // Make it fail...
-    if (err) return reject(err);
-    resolve("success");
-});
+var somePromiseOperation = function() {
+    return new Promise(function(resolve, reject) {
+        // Make it fail...
+        if (err) return reject(err);
+        resolve("success");
+    });
+};
 
 var resolute_options = {
     // Reference to your Promise function, note: this Promise will always fail.
