@@ -1,0 +1,15 @@
+{
+  "name": "resolutejs",
+  "version": "1.0.0",
+  "description": "Finally get to retry during a promise operation (works in modern browsers as well nodejs).",
+  "main": "Resolute.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abacaj/resolutejs.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anton Bacaj <anton@jet.com>",
+  "license": "MIT"
+}
