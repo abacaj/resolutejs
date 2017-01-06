@@ -9,16 +9,15 @@
 
     Resolute.prototype.run = function(operation) {
         var self = this;
+        var toString = Object.prototype.toString;
 
         var _checkForPromise = function(opt) {
             // Do we have a operation?
             var operation = (typeof opt === "undefined") ? this.operation : opt;
-            switch (typeof operation) {
-                case "function":
-                    return operation;
-                default:
-                    throw new Error("Operation was not a Function: " + operation);
+            if (toString.call(operation) === '[object Function]' || typeof operation === 'function') {
+                return operation;
             }
+            throw new Error("Operation was not a Function: " + operation);
         };
 
         var _fn = _checkForPromise.call(self, operation);
