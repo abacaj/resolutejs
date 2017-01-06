@@ -16,7 +16,7 @@ Minimal requirements: 3kb unminified / 0 dependencies.
 - Anything...
 
 ## Packages
-None yet.
+[NPM - resolutejs](https://www.npmjs.com/package/resolutejs)
 
 ## Usage
 Download resolute.js from [![Github Releases (by Release)](https://img.shields.io/github/downloads/abacaj/resolutejs/v1.1.2/total.svg)](https://github.com/abacaj/resolutejs/releases/download/v1.1.2/resolute.js), create a new instance as shown below
