@@ -139,3 +139,4 @@ resolute.run(somePromiseOperation).then(null).catch(function(err) {
 
 Contributors
 - [Andrej Kovcic](https://github.com/kovcic)
+- [Morgan Bickle](https://github.com/m0rganic)
