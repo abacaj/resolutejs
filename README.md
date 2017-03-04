@@ -57,8 +57,45 @@ resolute.run().then(null).catch(function(err) {
 resolute.run(somePromiseOperation).then(null).catch(function(err) {
     console.log("failed after trying: " + resolute.maxRetry + " times, with error: " + err);
 });
-
 ```
+
+#### exponential backoff
+
+By passing in the exponential backoff flag resolute will exponentially increase the waiting time between retries.
+
+
+```javascript
+...
+
+var resolute_options = {
+    // Reference to your Promise function, note: this Promise will always fail.
+    operation: somePromiseOperation,
+    // Maximum number of times to attempt
+    maxRetry: 5,
+    // Delay between retries in milliseconds
+    delay: 2000,
+    // exponentially increase wait time between retries
+    exponentialBackoff: true, //default false
+};
+
+var resolute_callback = function(retryCount, delay) {
+    console.log(`Retry ${retryCount} in ${delay} ms`);
+};
+
+var resolute = new Resolute(resolute_options, resolute_callback);
+
+// Run the operation stored in options.
+resolute.run().then(null).catch(function(err) {
+    console.log("failed after trying: " + resolute.maxRetry + " times, with error: " + err);
+});
+
+// Pass in a new operation to perform using the same Resolute instance.
+resolute.run(somePromiseOperation).then(null).catch(function(err) {
+    console.log("failed after trying: " + resolute.maxRetry + " times, with error: " + err);
+});
+```
+
+
 ### Browser
 ```html
 <script src="resolute.js"></script>
@@ -99,5 +136,6 @@ resolute.run(somePromiseOperation).then(null).catch(function(err) {
 
 ```
 
-## Contributors
+
+Contributors
 - [Andrej Kovcic](https://github.com/kovcic)

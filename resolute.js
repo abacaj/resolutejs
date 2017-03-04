@@ -5,11 +5,11 @@
         this.maxRetry = opt.maxRetry || 3;
         this.callback = callback;
         this.delay = opt.delay || 1000;
+        this.exponentialBackoff = opt.exponentialBackoff || false;
     };
 
     Resolute.prototype.run = function(operation) {
         var self = this;
-        var toString = Object.prototype.toString;
 
         var _checkForPromise = function(opt) {
             // Do we have a operation?
@@ -34,11 +34,16 @@
                 if (retryCount >= maxRetry) {
                     throw err;
                 }
-                return _delay(self.delay).then(_retry.bind(null, retryCount + 1, maxRetry, fn, delay));
+
+                if (self.exponentialBackoff) {
+                    var randomMs = Math.round(Math.random() * 1000) // a jitter
+                    delay = Math.pow(2, retryCount) * 1000 + randomMs
+                }
+                return _delay(delay).then(_retry.bind(null, retryCount + 1, maxRetry, fn, delay));
             };
 
             if (typeof self.callback == "function") {
-                self.callback(retryCount);
+                self.callback(retryCount, delay);
             }
 
             return fn().then(null, retryMechanism);
